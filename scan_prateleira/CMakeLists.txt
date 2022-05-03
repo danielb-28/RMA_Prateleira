@@ -9,6 +9,7 @@ project(scan_prateleira)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,6 +106,7 @@ catkin_package(
 #  LIBRARIES scan_prateleira
   CATKIN_DEPENDS
    roscpp
+   nav_msgs
 #  DEPENDS system_lib
 )
 
