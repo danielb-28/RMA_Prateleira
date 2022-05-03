@@ -17,6 +17,8 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <geometry_msgs/PointStamped.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <iostream>
+#include <fstream>
 
 namespace leitor_qr{
 
@@ -77,6 +79,9 @@ namespace leitor_qr{
 			
 			// Metodos
 			void PlotMarcadores(void);
+
+			// Arquivos
+			std::ofstream arquivo_csv;
 
 	};
 

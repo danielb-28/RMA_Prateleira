@@ -9,6 +9,9 @@ namespace leitor_qr
 	{
 		ROS_INFO("Leitor QR iniciado!"); // DEBUG 	
 
+		arquivo_csv.open("/home/danielb/qr_encontrados.csv"); // MOD
+		arquivo_csv.close();
+
 		listener_tf = new tf2_ros::TransformListener(buffer_tf); // Inicializa o listener do tf
 
 		// MOD - COLOCAR NO ARQUIVO DE PARAMETROS
@@ -177,6 +180,11 @@ namespace leitor_qr
 
 					// Salva o QR Code 
 					qr_codes_encontrados.push_back(qr_atual);
+
+					std::string str_conteudo(qr_atual.conteudo.begin(), qr_atual.conteudo.end());
+					arquivo_csv.open("/home/danielb/qr_encontrados.csv", std::ios_base::app);
+					arquivo_csv << str_conteudo << ", " << qr_atual.pos_mundo[0] << ", " << qr_atual.pos_mundo[1] << ", " << qr_atual.pos_mundo[2] << '\n';
+					arquivo_csv.close();
 
 					ROS_INFO_STREAM("Dados QR" << i << "	");	
 					for(auto elem : qr_atual.conteudo){
