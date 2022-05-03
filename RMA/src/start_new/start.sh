@@ -32,7 +32,7 @@ input=(
 "
   'Gazebo' "waitForRos; roslaunch robotica_movel simulation_arena.launch world_name:=prateleira gui:=true
 "
-  'Spawn' 'waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 --pos -1 -2 0 0 $UAV_TYPE --enable-rplidar --enable-rangefinder --enable-ground-truth --enable-bluefox-camera --enable-realsense-front"
+  'Spawn' 'waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 --pos 3 3 0 0 $UAV_TYPE --enable-rplidar --enable-rangefinder --enable-ground-truth --enable-bluefox-camera --enable-realsense-front"
 '
   'Control' "waitForOdometry; roslaunch mrs_uav_general core.launch config_control_manager:=./custom_configs/control_manager.yaml config_odometry:=./custom_configs/odometry.yaml config_uav_manager:=./custom_configs/uav_manager.yaml
 "

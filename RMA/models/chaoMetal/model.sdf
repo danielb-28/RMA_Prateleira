@@ -13,14 +13,13 @@
           <izz>0.17</izz>
         </inertia>
       </inertial>
-      <pose frame=''>0 0 0 0 0 0</pose>
+      <pose frame=''>0 0 -0.07 0 0 0</pose>
       <visual name='visual'>
-        <pose frame=''>0 0 0 0 0 0</pose>
+        <pose frame=''>0 0 -0.07 0 0 0</pose>
         <geometry>
           <mesh>
-            <!-- <uri>model://qrcode1/meshes/equipment_A.obj</uri> -->
             <uri>model://chaoMetal/meshes/t1.dae</uri>
-            <scale>0.007 0.07 0.07</scale>
+            <scale>200 200 0.07</scale>
           </mesh>
         </geometry>
         <transparency>0</transparency>
@@ -29,10 +28,10 @@
       <collision name='collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
-        <pose frame=''>0 0 0.05 0 -0 0</pose>
+        <pose frame=''>0 0 -0.07 0 -0 0</pose>
         <geometry>
           <box>
-            <size>0.1 0.1 0.1</size>
+            <size>200 200 0.14</size>
           </box>
         </geometry>
         <surface>
