@@ -40,7 +40,7 @@ def main():
     # NomeMapa = rospy.get_param("/a_star/NomeMapa")                      # Nome do a ser percorrido
     # Animacao = rospy.get_param("/a_star/Animacao")
     
-    Proporcional = 1#0.28                         # Metros/pxl
+    Proporcional = 3#0.28                         # Metros/pxl
 
     xOrigem = float(argv[1])
     yOrigem = float(argv[2])
@@ -94,8 +94,8 @@ def main():
     sy = (yOrigem*Proporcional)        # Y inicial
     gx = (xDestino*Proporcional)       # X final
     gy = (yDestino*Proporcional)       # Y final
-    grid_size = 0.5                  # Distâncias entre as esquinas
-    robot_radius = (0.85*Proporcional)    # Tamanho do robô
+    grid_size = 0.6 *Proporcional                  # Distâncias entre as esquinas
+    robot_radius = (0.8*Proporcional)    # Tamanho do robô
 
     show_animation = Animacao   # Verifica se deve ou não realizar o plot
     if show_animation:          # Plot dos obstáculos, origem e destino
@@ -131,16 +131,16 @@ def main():
 
     rx.insert(0, gx)
     ry.insert(0, gy)
-    
+
     trajetoria = "trajetoria"
     arquivoTrajetoria = open(trajetoria + ".csv", "w")
     for i in range(len(rx)):
         if i == 0:
-            arquivoTrajetoria.write(str(rx[-i-1]) + ',' + str(ry[-i-1]) + ', ' + str(argv[3]) + ', ' + str(argv[4]) + '\n')
+            arquivoTrajetoria.write(str(rx[-i-1]/Proporcional) + ',' + str(ry[-i-1]/Proporcional) + ', ' + str(argv[3]) + ', ' + str(argv[4]) + '\n')
         elif i < len(rx)-1: 
-            arquivoTrajetoria.write(str(rx[-i-1]) + ',' + str(ry[-i-1]) + ', 1.2, ' + str(argv[8]) + '\n')
+            arquivoTrajetoria.write(str(rx[-i-1]/Proporcional) + ',' + str(ry[-i-1]/Proporcional) + ', 1.2, ' + str(argv[8]) + '\n')
         else:
-            arquivoTrajetoria.write(str(rx[-i-1]) + ',' + str(ry[-i-1]) + ', ' + str(argv[7]) + ', ' + str(argv[8]) + '\n')
+            arquivoTrajetoria.write(str(rx[-i-1]/Proporcional) + ',' + str(ry[-i-1]/Proporcional) + ', ' + str(argv[7]) + ', ' + str(argv[8]) + '\n')
         #print(str(rx[-i-1]) + ',' + str(ry[-i-1]) + ',3\n')
     arquivoTrajetoria.close()
     
@@ -154,7 +154,7 @@ def main():
 
     arquivo_obstaculos = open("obstaculos.csv", "w") 
     for i in range(len(ox)):
-        arquivo_obstaculos.write(str(ox[i]) + ", " + str(oy[i]) + "\n")
+        arquivo_obstaculos.write(str(ox[i]/Proporcional) + ", " + str(oy[i]/Proporcional) + "\n")
 
     arquivo_obstaculos.close()
         

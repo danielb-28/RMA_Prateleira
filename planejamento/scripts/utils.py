@@ -158,9 +158,38 @@ def maxValue(matriz):
                 maior = matriz[r][n]
     return maior, index
 
-def colidir(ox, oy, newPath_x, newPath_y, goalx, goaly):
+def colidir(ox, oy, newPath_x, newPath_y, goalx, goaly, xmax, xmin, ymax, ymin):
     print("pontos " + str(goalx) + " "+ str(goaly) + " "+ str(newPath_x) + " "+ str(newPath_y))
 
+    if goalx > xmax:
+        xmax = goalx
+        
+    if goaly > ymax:
+        xmax = goaly 
+        
+    if goalx < xmin:
+        xmin = goalx
+        
+    if goaly < ymin:
+        ymin = goaly
+        
+    if newPath_x > xmax:
+        xmax = newPath_x
+        
+    if newPath_y > ymax:
+        ymax = newPath_y
+        
+    if newPath_x < xmin:
+        xmin = newPath_x
+        
+    if newPath_y < ymin:
+        ymin = newPath_y
+
+    xmin -= 1
+    ymin -= 1
+    xmax += 1
+    ymax += 1
+        
     if (goalx-newPath_x) == 0:
         print("colidiu por divisao por zero")
         return True
@@ -168,9 +197,18 @@ def colidir(ox, oy, newPath_x, newPath_y, goalx, goaly):
     n = goaly - m*goalx
 
     for i in range(len(ox)):
-        if (abs(ox[i]- newPath_x) < abs(goalx - newPath_x)+1 and abs(oy[i] - newPath_y) < abs(goaly - newPath_y)+1):
+        
+        if ox[i] < xmax and oy[i] < ymax and ox[i] > xmin and oy[i] > ymin: 
+        #if abs(oy[i] - newPath_y) < abs(goaly - newPath_y): 
             print("testando colisao" + str(ox[i]) + " " + str(oy[i]) + " "+ str(goalx) + " "+ str(goaly) + " "+ str(newPath_x) + " "+ str(newPath_y))
-            if intersecao_ponto(ox[i], oy[i], m, n) | intersecao_ponto(ox[i], oy[i], m-10, n) | intersecao_ponto(ox[i], oy[i], m+10, n):
+            #if intersecao_ponto(ox[i], oy[i], m, n) | intersecao_ponto(ox[i], oy[i], m-10, n) | intersecao_ponto(ox[i], oy[i], m+10, n):
+            colidiu_cone = False
+            for passo in np.arange(-20, 20, 1):
+            #for passo in np.arange(-1, 1, 0.1):
+                if intersecao_ponto(ox[i], oy[i], m+passo, n):
+                    colidiu_cone = True
+                    break
+            if colidiu_cone:
                 if ( ( (goalx-newPath_x)*(ox[i]-newPath_x) ) >= 0 and ( (goaly-newPath_y)*(oy[i]-newPath_y) ) >= 0):
                     print("colidiu")
                     return True
@@ -180,27 +218,44 @@ def colidir(ox, oy, newPath_x, newPath_y, goalx, goaly):
     return False
 
 def diminuir_pontos(x, y, z, h, ox, oy, apf=False):
+
     newPath_x, newPath_y, newPath_z, newPath_h = [x[0]], [y[0]], [z[0]], [h[0]]
     goalx, goaly = x[-1], y[-1]
     check = 1
 
+    xmax = max(x)
+    xmin = min(x)
+    ymax = max(y)
+    ymin = min(y)
+
+    print(xmax)
+    print(xmin)
+    print(ymax)
+    print(ymin)
+
     while newPath_x[-1] != goalx and newPath_y[-1] != goaly:
-        if not colidir(ox, oy, newPath_x[-1], newPath_y[-1], x[-check], y[-check]):
+        if not colidir(ox, oy, newPath_x[-1], newPath_y[-1], x[-check], y[-check], xmax, xmin, ymax, ymin):
             newPath_x.append(x[-check])
             newPath_y.append(y[-check])
             newPath_z.append(z[-check])
             newPath_h.append(h[-check])
             check = 1
         else:
-            if check < len(x):
+            if check+1 < len(x):
                 check += 1
             else:
                 newPath_x.append(x[-check])
                 newPath_y.append(y[-check])
                 newPath_z.append(z[-check])
                 newPath_h.append(h[-check])
+                
+                del x[-check]
+                del y[-check]
+                del z[-check]
+                del h[-check]
+
                 check = 1
-               
+
     return newPath_x, newPath_y, newPath_z, newPath_h
                 
 def criar_reta(x1, y1, x2, y2):
@@ -221,7 +276,7 @@ def criar_reta(x1, y1, x2, y2):
 def intersecao_ponto(x_ponto, y_ponto, m, n):
     aux = abs((m * x_ponto) - y_ponto + n)
     print("intersec " + str(aux))
-    if aux < 10:
+    if aux < 15:
         return True # o ponto cruza a linha
     else:
         return False # o ponto nao cruza a linha

@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from utils import *
 from utilsUAV import *
 
+import diminuir_pontos_ros as lidia
+
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Range
 from geometry_msgs.msg import PoseArray, Pose
@@ -54,10 +56,10 @@ class globalPlanner:
         path_obstaculos = os.path.dirname(os.path.abspath(__file__)) + "/obstaculos.csv"
         arquivo_obstaculos = np.genfromtxt(path_obstaculos, delimiter=',')
         
-        self.rotas["x"] = arquivo_trajetoria[:, 0]
-        self.rotas["y"] = arquivo_trajetoria[:, 1]
-        self.rotas["z"] = arquivo_trajetoria[:, 2]
-        self.rotas["yaw"] = arquivo_trajetoria[:, 3]
+        self.rotas["x"] = list(arquivo_trajetoria[:, 0])
+        self.rotas["y"] = list(arquivo_trajetoria[:, 1])
+        self.rotas["z"] = list(arquivo_trajetoria[:, 2])
+        self.rotas["yaw"] = list(arquivo_trajetoria[:, 3])
         print(self.rotas)
         #self.rotas["x"], self.rotas["y"] = suavizar_curva(list(self.rotas["x"]), list(self.rotas["y"]))
         self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"] = diminuir_pontos(self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"], arquivo_obstaculos[:,0], arquivo_obstaculos[:,1])
