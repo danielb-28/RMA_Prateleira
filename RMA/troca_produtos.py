@@ -2,6 +2,7 @@
 import os
 import qrcode as qr
 import sys
+import numpy as np
 
 argv = sys.argv
 trocado1 = int(argv[1])
@@ -17,14 +18,17 @@ endereco2 = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', '
 imagem2 = qr.make(str(trocado1))
 imagem2.save(os.path.join(endereco2, enderecoQR))
 
-with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_indice.csv'), 'r') as arquivoLeitura:
-    linhas = arquivoLeitura.readlines() #cada linha é um elemento da lista linhas
 
-for i in range(len(linhas)):
-    if linhas[i][0] == str(trocado1):
-        linhas[i] = linhas[i][0].replace(str(trocado1), str(trocado2)) + linhas[i][1:]
-    else:
-        linhas[i] = linhas[i][0].replace(str(trocado2), str(trocado1)) + linhas[i][1:]
+listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_gerados.csv'), delimiter = ',')
+
+for i in range(len(listaGerada)):
+    if listaGerada[i][0] == trocado1:
+        aux1 = i
+    if listaGerada[i][0] == trocado2:
+        aux2 = i
+listaGerada[aux1][0] = trocado2
+listaGerada[aux2][0] = trocado1
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_indices_trocados.csv'), 'w') as arquivoEscrita:
-    arquivoEscrita.writelines(linhas) 
+    for i in range(len(listaGerada)):
+        arquivoEscrita.write(str(listaGerada[i][0]) + ',' + str(listaGerada[i][1]) + ',' + str(listaGerada[i][2]) + ',' + str(listaGerada[i][3]) + '\n')

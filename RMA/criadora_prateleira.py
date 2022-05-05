@@ -251,9 +251,15 @@ cameraSpawnObjects = "<model name='the_void'>\n\
       <pose frame=''>-1000 -1000 0 0 0 0</pose>\n\
     </model>\n"
 
-userCamera = "<gui>\n\
+userCameraCima = "<gui>\n\
       <camera name=\"camera\">\n\
         <pose>45 25 100 0 1.57 1.57</pose>\n\
+      </camera>\n\
+    </gui>\n"
+
+userCameraFrente = "<gui>\n\
+      <camera name=\"camera\">\n\
+        <pose>8 -15 6 0 0.1 1.57</pose>\n\
       </camera>\n\
     </gui>\n"
 
@@ -350,6 +356,7 @@ def shelf(px, py, pz, n, p1, pr=0, pp=0, pyaw=0):
     </include>\n\
           </model>\n"
 #--------------------------------------------------------CRIAÇÃO DO MAPA------------------------------------------------------------
+resolucao = 3
 def mapaInicio(Xdim, Ydim):
   Xdim = math.ceil(Xdim)
   Ydim = math.ceil(Ydim)
@@ -359,11 +366,9 @@ def mapaInicio(Xdim, Ydim):
   return escrever
 
 def retangulo(vetor, Xinicio, Yinicio):
-    for j in range(2):
-        for i in range(5):
-            # print('x',Xinicio+i)
-            # print(Yinicio+j)
-            vetor[math.ceil(Xinicio+i)][math.ceil(Yinicio+j-1)] = 0
+    for j in range(1*resolucao+1):
+        for i in range(4*resolucao):
+            vetor[math.ceil(Xinicio*resolucao+i)][math.ceil(Yinicio*resolucao+j-1)] = 0
     return vetor
 #-------------------------------------------------------------Main------------------------------------------------------------------
 #def Alturas(quantidade_prateleiras, altura_inicial = 0.05, passo_altura = 0.45):
@@ -375,9 +380,9 @@ def retangulo(vetor, Xinicio, Yinicio):
 # o ideal seria fazer algumas restricoes nesse quantidade de blocos 
 # pra evitar q as caixas se sobreponham
 quantidade_blocos = 3        # Quantidade de blocos de fileiras
-quantidade_fileiras = 6       # Quantidade de fileiras por bloco (Y)
+quantidade_fileiras = 8       # Quantidade de fileiras por bloco (Y)
 comprimento_fileira = 5       # Comprimento em x*3.32 de cada fileira (X)
-quantidade_prateleiras = 4    # Quantidade de prateleiras (empilhadas) em cada fileira, até 8
+quantidade_prateleiras = 3    # Quantidade de prateleiras (empilhadas) em cada fileira, até 8
 andar2 = True if quantidade_prateleiras > 4 else False  # prateleira em cima de prateleira
 #alturas = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]     # Altura das caixas, da mais baixa até a mais alta, observe que deve haver alturas de acordo com a quantidade de prateleiras configuradas [0.3, 1.6, 2.8]
 #alturas = Alturas(quantidade_prateleiras)          # Função que cria as alturas automaticamente de acordo com a quantidade de prateleiras, a altura inicial e a altura de cada prateleira
@@ -385,10 +390,10 @@ andar2 = True if quantidade_prateleiras > 4 else False  # prateleira em cima de 
 # se voces quiserem automatizar esse array tem como tirar uma equacao desses valores
 # ai vcs descobrem o n, ai os novos valores multiplica por esse n
 # da pra fazer isso com a equacao da reta msm
-alturas = [0.1, 0.99, 1.86, 2.735, 3.69, 4.58, 5.45, 6.33]  
+alturas = [0.99, 1.86, 2.735, 3.69, 4.58, 5.45, 6.33]  
 #caixas_fileira = 1           # Porcentagem de caixas ocupando a totalidade do depósito. Substituído por parâmetro aleatorizador
 
-p1 = True                    # Primeira fileira virada para fora (True)
+p1 = False                    # Primeira fileira virada para fora (True)
 count = 1
 tam_corredorHorizontal = 6    # Tamanho do corredor entre as fileiras de mesma orientação (Nesse corredor ainda existe uma fileira virada para o outro lado)
 tam_corredorVertical = 4      # Tamanho do corredor entre os blocos de fileiras
@@ -415,8 +420,8 @@ arquivoMundo.write(sol)
 arquivoMundo.write(groundPlane)
 
 arquivoMapa = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mapa.pgm"), "w")
-Xdim = math.ceil(Xinicial + (quantidade_blocos)*(comprimento_fileira*3 + tam_corredorVertical))
-Ydim = math.ceil(Yinicial + quantidade_fileiras*4)
+Xdim = math.ceil(Xinicial + (quantidade_blocos)*(comprimento_fileira*3 + tam_corredorVertical))*resolucao
+Ydim = math.ceil(Yinicial + quantidade_fileiras*4)*resolucao
 arquivoMapa.write(mapaInicio(Xdim, Ydim))
 Mapa = np.zeros((Xdim, Ydim)) + 255
 
@@ -434,9 +439,12 @@ for qb in range(quantidade_blocos):     # Cria os blocos de fileiras, ganhando t
           Mapa = retangulo(Mapa, (Xinicial-1.6) + cf*2.4+qb*(comprimento_fileira*3+tam_corredorVertical), (y-0.425))      # Escreve os obstáculos no arquivo de mapa usado pelo A*
           if p1:                                                                                                          # Define a orientação das prateleiras
             if cf == 0:                                                                                                   # Pega a primeira prateleira para criar o checkpoint
-              checkpoints.append([Xinicial + qb*(comprimento_fileira*3+tam_corredorVertical)-1.2,y+3.5])                  # Escreve o checkpoint no início (no sentido de x) do corredor entre as fileiras
-            # if cf == comprimento_fileira-1:                                                                             # Pega a última prateleira para criar o checkpoint
-            #   checkpoints.append(Xinicial + cf*2.428+qb*(comprimento_fileira*3+tam_corredor)+1.2,y+3.5)                 # Escreve o checkpoint no fim (no sentido de x) do corredor entre as fileiras
+              checkpoints.append([Xinicial + qb*(comprimento_fileira*3+tam_corredorVertical)-1.2, y-1.6, 1.5, math.pi/2])                  # Escreve o checkpoint no início (no sentido de x) do corredor entre as fileiras
+              # arquivoMundo.write(qrcode(Xinicial + qb*(comprimento_fileira*3+tam_corredorVertical)-1.2, y-1.6, 1.5,nObjeto = count, pr=math.pi/2))   # Conferir localização dos checkpoints
+          else:
+            if cf == comprimento_fileira-1:                                                                             # Pega a última prateleira para criar o checkpoint
+              checkpoints.append([Xinicial + cf*2.428+qb*(comprimento_fileira*3+tam_corredorVertical)+1.2, y+1.6, 1.5, -math.pi/2])                 # Escreve o checkpoint no fim (no sentido de x) do corredor entre as fileiras
+              # arquivoMundo.write(qrcode(Xinicial + cf*2.428+qb*(comprimento_fileira*3+tam_corredorVertical)+1.2, y+1.6, 1.5,nObjeto = count, pr=-math.pi/2))   # Conferir localização dos checkpoints
           if andar2:                                                                                                      # Executa caso haja mais de 4 caixas a serem empilhadas
             arquivoMundo.write(shelf(Xinicial + cf*2.428+qb*(comprimento_fileira*3+tam_corredorVertical),y,3.59,count*-1,p1))   # escreve a prateleira acima no arquivo do mundo
 
@@ -472,6 +480,7 @@ for i in range(len(Mapa)):
     Mapa[-i-1][Xdim-1] = 0
     for j in range(len(Mapa[0])):
       Mapa[Ydim-1][j] = 0
+      # Mapa[0][j] = 0
       arquivoMapa.write(str(round(Mapa[-i-1][j])) + '\n')
 arquivoMapa.close()
 
@@ -479,12 +488,15 @@ arquivoLaunch.write(launchFim)
 arquivoLaunch.close()
 
 arquivoMundo.write(cameraSpawnObjects)
-arquivoMundo.write(userCamera)
+
+arquivoMundo.write(userCameraCima)
+# arquivoMundo.write(userCameraFrente)
+
 arquivoMundo.write(guiFrameSinc)
 arquivoMundo.write(end)
 arquivoMundo.close()
 
-arquivoProdutos = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "localizacao_produtos_indice.csv"), "w")
+arquivoProdutos = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "localizacao_produtos_gerados.csv"), "w")
 for i in range(len(localizacaoProduto)):
   for j in range(len(localizacaoProduto[0])):
     if j == len(localizacaoProduto[0])-1:
@@ -503,9 +515,9 @@ for i in range(len(localizacaoProduto)):
 
 arquivoProdutos.close()
 arquivoCheckpoints = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "localizacao_checkpoints.csv"), "w")
-#arquivoCheckpoints.write('X, Y, Z\n')
+#arquivoCheckpoints.write('X, Y, Z, Orientação\n')
 for i in range(len(checkpoints)):
-  arquivoCheckpoints.write(str(checkpoints[i][0]) + ',' + str(checkpoints[i][1]) + ',3,0\n')
+  arquivoCheckpoints.write(str(checkpoints[i][0]) + ',' + str(checkpoints[i][1]) + ',' + str(checkpoints[i][2]) + ',' + str(checkpoints[i][3]) + '\n')
 
 arquivoDrone = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "pontos.csv"), "w")
 for i in range(len(localizacaoDrone)):
@@ -543,4 +555,4 @@ for qb in range(nCaixas-1):
   with open(pastaCola + '/model.sdf', 'w') as arquivo:
     arquivo.writelines(linhas)
 
-print('\nPrateleiras criadas com sucesso, divirta-se! Mas se lembre que João Carlos Tonon Campi tá de olho nas suas travessuras...')
+print('\nPrateleiras criadas com sucesso, divirta-se! Mas se lembre que João Carlos Tonon Campi está de olho nas suas travessuras...')
