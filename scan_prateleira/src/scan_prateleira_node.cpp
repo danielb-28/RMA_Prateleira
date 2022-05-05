@@ -10,6 +10,7 @@ void UpdateEstado();
 bool flag_mov_completo = false;
 
 int estado_atual = 0;
+int prateleira_atual = 0;
 
 ros::ServiceClient srv_goto_altitude;
 ros::ServiceClient srv_goto_fcu;
@@ -22,8 +23,8 @@ ros::Subscriber sub_diag;
 bool sentido = false;
 
 // Parametros de geometria das prateleiras
-const float w = 16;
-const float dh = 1;
+const float w = 13;
+const float alturas[4] = {2.0, 1.1, 2.8};
 
 int main(int argc, char** argv){
 
@@ -80,16 +81,22 @@ void UpdateEstado(){
 			break;
 
 		case 1:
-			comando_posicao.request.goal[1] = 0.0;
-  			comando_posicao.request.goal[2] = dh;
-			
-			srv_goto_fcu.call(comando_posicao);
+			prateleira_atual++;
+
+			//comando_posicao.request.goal[1] = 0.0;
+  			//comando_posicao.request.goal[2] = dh;
+			comando_altitude.request.goal = alturas[prateleira_atual];
+
+			//srv_goto_fcu.call(comando_posicao);
+			srv_goto_altitude.call(comando_altitude);
 
 			break;
 
 		case 2:
 
-			comando_altitude.request.goal = 0.6;
+			//comando_altitude.request.goal = 0.6;
+			prateleira_atual = 0;
+			comando_altitude.request.goal = alturas[0];
 			srv_goto_altitude.call(comando_altitude);
 			
 			break;
@@ -100,6 +107,7 @@ void UpdateEstado(){
 
 
 	if(estado_atual <= 6) estado_atual++;
-	else estado_atual = 0;
+	//else estado_atual = 0;
+	else ros::shutdown();
 	
 }
