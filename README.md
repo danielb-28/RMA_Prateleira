@@ -65,6 +65,17 @@ cd ..
 rm -rf RMA_Prateleira/
 ```
 
+É necessária a instalação biblioteca de leitura do QrCode:
+```shel
+bash ~/workpace/src/home/otavio/workspace/src/leitor_qr/libquirc/install.sh
+```
+
+Para finalizar basta compilar a workspace:
+```shel
+cd ~/workpace
+catkin clean && catkin_make
+```
+
 ## Rodando a Simulação
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação criando novo ambiente.
 ```shel
