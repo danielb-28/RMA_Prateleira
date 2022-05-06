@@ -53,7 +53,7 @@ pip3 install numpy matplotlib qrcode
 
 A montagem dos pacotes deve ser feita como se segue:
 ```bash
-cd ~/workpace/src
+cd ~/workspace/src
 git clone https://github.com/danielb-28/RMA_Prateleira.git
 cd RMA_Prateleira
 mv scan_prateleira ..
