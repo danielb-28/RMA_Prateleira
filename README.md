@@ -80,7 +80,7 @@ catkin clean && catkin_make
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação criando novo ambiente.
 ```bash
 cd ~/workspace/src/RMA
-bash gerar_ambiente.sh
+bash criar_ambiente.sh
 cd /home/otavio/workspace/src/planejamento/scripts
 bash ./run.sh
 ```
