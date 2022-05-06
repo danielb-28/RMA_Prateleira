@@ -16,7 +16,7 @@ O ambiente é criado pelo script https://github.com/danielb-28/RMA_Prateleira/bl
  - localizacao_checkpoints.csv -> Lista de localizações e orientações no mapa por onde o UAV entende quando se inicia e termina uma fileira para poder percorrê-las.
  - localizacao_produtos_gerados.csv -> Lista das localizações e códigos dos produtos no mapa.
  - localização_produtos.csv -> Lista das localizações dos produtos no mapa.
- - pontos.csv -> Lista de localizações e orientações que o UAV deve atingir para ser capaz de ler os QRCodes.
+ - pontos.csv -> Lista de localizações e orientações que o UAV deve atingir para ser capaz de ler os QrCodes.
 
 ## Resultados
 A partir dos produtos encontrados pelo UAV é possível realizar uma comparação com os produtos gerados utilizando-se do script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/compara_localizacao_produtos.py , ele entregará quais produtos estão corretos (com base em tolerância predeterminada entre as linhas 5 e 7), quais não estão corretos, quais não foram encontrados no ambiente e, ainda, os que foram encontrados, mas não estavam presentes na lista inicial.
