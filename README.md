@@ -72,7 +72,7 @@ bash ~/workspace/src/RMA/scripts/gerar_ambiente.sh
 bash ./run.sh
 ```
 
-Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior:
+Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior, execute em outro terminal:
 ```shel
 bash ~/workspace/src/RMA/src/start/start.sh
 bash ./run.sh
