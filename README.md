@@ -29,4 +29,4 @@ Foram feitas alterações para que o script no link abaixo fosse compatível com
 Link: 
 https://github.com/danielb-28/RMA
 
-###### Obs.: Existe uma proporção com a qual o mapa utilizado pelo A* para o cálculo da rota que modifica a escala de trabalho. Para modificá-la é necessário modificar o valor da variável porporcao no CriadoraPrateleira.py (linha 359) e no a_star.py (linha 43), ambos devem contar o mesmo valor e quando maior esse valor maior a resolução do mapa, mas aumenta o processamento do path planing.
+###### Obs.: Existe uma proporção com a qual o mapa utilizado pelo A* para o cálculo da rota que modifica a escala de trabalho. Para modificá-la é necessário modificar o valor da variável porporcao no CriadoraPrateleira.py (linha 359) e no a_star.py (linha 43), ambos devem conter o mesmo valor e quando maior esse valor a resolução do mapa, mais aumenta o processamento do path planing.
