@@ -65,7 +65,7 @@ cd ..
 rm -rf RMA_Prateleira/
 ```
 
-É necessária a instalação biblioteca de leitura do QrCode:
+É necessária a instalação da biblioteca de leitura do QrCode:
 ```shel
 sudo bash ~/workpace/src/home/otavio/workspace/src/leitor_qr/libquirc/install.sh
 ```
