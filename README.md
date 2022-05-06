@@ -8,14 +8,25 @@ Grupo:
  - Wilson Daniel Bruno
 
 ## Criação do ambiente
-O ambiente é criado pelo script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/CriadoraPrateleira.py a medida que editas o arquivos .world, .launch e os models deste pacote, a estrutura pode ser modificada entre as linhas 382 - 399, desde o número de fileiras e blocos e a posição de início até o quantidade de prateleiras que podem ser ocupadas por produtos/caixas. A forma como as fileiras se dispõe (iniciando orientadas para dentro ou fora do bloco) no cenário pode ser modificada alterando a varável p1. A quantidade de caixas é feita com porcentagem do espaço disponível e atualmente roda com aleatoridade entre 30 e 100%, podendo ser modificada na linha 452.
+O ambiente é criado pelo script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/criadora_prateleira.py a medida que editas o arquivos .world, .launch e os models deste pacote, a estrutura pode ser modificada entre as linhas 382 - 399, desde o número de fileiras e blocos e a posição de início até o quantidade de prateleiras que podem ser ocupadas por produtos/caixas. A forma como as fileiras se dispõe (iniciando orientadas para dentro ou fora do bloco) no cenário pode ser modificada alterando a varável p1. A quantidade de caixas é feita com porcentagem do espaço disponível e atualmente roda com aleatoridade entre 30 e 100%, podendo ser modificada na linha 452.
 
-Este mesmo script cria o mapa.pgm que será utilizado pelo A* como será explicado. Gera diversos arquivos csv que auxiliam na obtenção dos resultados como a localização dos produtos, uma lista de checkpoints no mapa por onde o drone pode saber quando se inicia e termina uma fileira para poder percorrê-las e também cria uma lista com posição e orientação que ele deve atingir para conseguir realizar a leitura dos QR Codes também criados no CriadoraPreteleiras.py.
+#### arquivos criados pelo criadora_prateleira.py
+ - mapa.pgm -> Mapa utilizado pelo A* para o planejamento do rota (path planing).
+ - QrCodes -> Dentro da pasta models são criados os arquivos para que se insira diferentes QRCodes no ambiente para posteior leitura pelo UAV.
+ - localizacao_checkpoints.csv -> Lista de localizações e orientações no mapa por onde o UAV entende quando se inicia e termina uma fileira para poder percorrê-las.
+ - localizacao_produtos_gerados.csv -> Lista das localizações e códigos dos produtos no mapa.
+ - localização_produtos.csv -> Lista das localizações dos produtos no mapa.
+ - pontos.csv -> Lista de localizações e orientações que o UAV deve atingir para ser capaz de ler os QRCodes.
 
 ## Resultados
-A partir dos produtos encontrados pelo drone é possível realizar uma comparação com os produtos gerados utilizando-se do script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/compara_localizacao_produtos.py , ele entregará quais produtos estão corretos (com base em tolerância predeterminada entre as linhas 5 e 7), quais não estão corretos, quais não foram encontrados no ambiente e, ainda, os que foram encontrados, mas não estavam presentes na lista inicial.
+A partir dos produtos encontrados pelo UAV é possível realizar uma comparação com os produtos gerados utilizando-se do script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/compara_localizacao_produtos.py , ele entregará quais produtos estão corretos (com base em tolerância predeterminada entre as linhas 5 e 7), quais não estão corretos, quais não foram encontrados no ambiente e, ainda, os que foram encontrados, mas não estavam presentes na lista inicial.
 
-Existem os scripts https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/remove_produtos.py e https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/troca_produtos.py que geram listas que podem ser comparadas pelo anterior ou utilizadas para investigar o funcionamento do drone. Esses dois últimos funcionam chamando-os no terminal com o índice do produto que deseja remover (não sendo removido na simulação) e os ínidices dos produtos que deseja trocar de posição (sendo trocados inclusive na simulação).
+Existem os scripts https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/remove_produtos.py e https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/troca_produtos.py que geram listas que podem ser comparadas pelo anterior ou utilizadas para investigar o funcionamento do UAV. Esses dois últimos funcionam chamando-os no terminal com o índice do produto que deseja remover (não sendo removido na simulação) e os ínidices dos produtos que deseja trocar de posição (sendo trocados inclusive na simulação). Nesse mesmo âmbito, foi criado o https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/seleciona_produtos.py , que faz o oposto do remove_produtos.py, esse script seleciona os produtos com base nos índices adicionados no vetor manter (linha 4).
+
+#### arquivos criados por remove_produtos.py , seleciona_produtos.py e troca_produtos.py
+ - pontos_percorrer_indices.csv -> Lista das localizações e códigos dos produtos a conferir no mapa.
+ - pontos_percorrer.csv -> Lista das localizações dos produtos a conferir no mapa.
+ - localizacao_produtos_indices_trocados.csv
 
 ## Remoção de arquivos
 Para remover os arquivos csv, o mapa e os models dos QR Codes adicionais, basta executar https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/removedora_arquivos.py e esses arquivos serão apagados.
@@ -30,3 +41,7 @@ Link:
 https://github.com/danielb-28/RMA
 
 ###### Obs.: Existe uma proporção com a qual o mapa utilizado pelo A* para o cálculo da rota que modifica a escala de trabalho. Para modificá-la é necessário modificar o valor da variável porporcao no CriadoraPrateleira.py (linha 359) e no a_star.py (linha 43), ambos devem conter o mesmo valor e quando maior esse valor a resolução do mapa, mais aumenta o processamento do path planing.
+
+
+## Passo-a-passo
+Para utilização da simulação proposta, inicialmente é necessária a execução do CriadoraPrateleira.py
