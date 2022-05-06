@@ -3,7 +3,6 @@
 
 	<!-- leitor_qr -->
 	<node pkg='leitor_qr' type="leitor_qr_node" name="leitor_qr" output="screen">
-		<rosparam command="load" file="$(find leitor_qr)/config/param.yaml"></rosparam> <!--Arquivo de parametros-->
 	</node>
 
 	<!-- processamento imagem - colorida para preto e branco -->
