@@ -9,7 +9,8 @@ namespace leitor_qr
 	{
 		ROS_INFO("Leitor QR iniciado!"); // DEBUG 	
 
-		arquivo_csv.open("/home/danielb/qr_encontrados.csv"); // MOD
+		PATH_CSV += "/workspace/src/RMA/localizacao_produtos_encontrados.csv";
+		arquivo_csv.open(PATH_CSV); // MOD
 		arquivo_csv.close();
 
 		listener_tf = new tf2_ros::TransformListener(buffer_tf); // Inicializa o listener do tf
@@ -41,7 +42,7 @@ namespace leitor_qr
 
 	// Callback Subscriber Imagem Sensor
 	void LeitorQR::CallbackImagemSensor(const sensor_msgs::Image& msg){
-		ROS_INFO("Imagem recebida do UAV"); // DEBUG
+		//ROS_INFO("Imagem recebida do UAV"); // DEBUG
 		
 		sensor_msgs::Image img_proc(msg); // Imagem limitada 
 
@@ -51,7 +52,7 @@ namespace leitor_qr
 		}	
 
 		pub_imagem_raw.publish(img_proc); // Envia a imagem colorida para ser processada
-		ROS_INFO("Imagem enviada para o processamento"); // DEBUG
+		//ROS_INFO("Imagem enviada para o processamento"); // DEBUG
 		return;
 	}	
 	
@@ -75,7 +76,7 @@ namespace leitor_qr
 		uint32_t x0 = w/2; // Centro x
 		uint32_t y0 = h/2; // Centro y
 
-		ROS_INFO_STREAM("Imagem Recebida:	" << h << "; " << w << " Passo: " << passo); // DEBUG
+		//ROS_INFO_STREAM("Imagem Recebida:	" << h << "; " << w << " Passo: " << passo); // DEBUG
 		
 		// Criacao do decodificador
 		struct quirc *qr; // Decodificador
@@ -98,7 +99,7 @@ namespace leitor_qr
 		
 		imagem = quirc_begin(qr, &pix_linha, &linhas_buffer);
 		
-		ROS_INFO_STREAM("Buffer Alocado:	"	<< linhas_buffer << "; " << pix_linha); // DEBUG
+		//ROS_INFO_STREAM("Buffer Alocado:	"	<< linhas_buffer << "; " << pix_linha); // DEBUG
 
 		for(int i=0; i<linhas_buffer*pix_linha; i++){ // Copia a imagem para o buffer
 			imagem[i] = msg.data[i]; 
@@ -108,7 +109,7 @@ namespace leitor_qr
 			
 		// QR codes encontrados
 		int qr_detectados = quirc_count(qr);
-		ROS_INFO_STREAM("QR Codes Detectados:	" << qr_detectados); // DEBUG
+		//ROS_INFO_STREAM("QR Codes Detectados:	" << qr_detectados); // DEBUG
 
 		uint32_t pos[2] = {0,0}; // Posicao do qr code
 
@@ -126,7 +127,9 @@ namespace leitor_qr
 			pos[1] = (codigo.corners[0].y + codigo.corners[3].y)/2.0; // Centro y do QR code
 			
 			// Verifica se foi possivel decodificar
-			if(err) ROS_INFO_STREAM("Erro no QR" << i); // DEBUG
+			if(err){
+				//ROS_INFO_STREAM("Erro no QR" << i); // DEBUG
+			}
 			else {
 								
 				// Verifica se o conteudo do  QR Code ja foi detectado anteriormente
@@ -182,7 +185,7 @@ namespace leitor_qr
 					qr_codes_encontrados.push_back(qr_atual);
 
 					std::string str_conteudo(qr_atual.conteudo.begin(), qr_atual.conteudo.end());
-					arquivo_csv.open("/home/danielb/qr_encontrados.csv", std::ios_base::app);
+					arquivo_csv.open(PATH_CSV, std::ios_base::app);
 					arquivo_csv << str_conteudo << ", " << qr_atual.pos_mundo[0] << ", " << qr_atual.pos_mundo[1] << ", " << qr_atual.pos_mundo[2] << '\n';
 					arquivo_csv.close();
 

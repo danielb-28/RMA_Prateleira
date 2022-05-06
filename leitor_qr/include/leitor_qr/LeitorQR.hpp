@@ -82,6 +82,7 @@ namespace leitor_qr{
 
 			// Arquivos
 			std::ofstream arquivo_csv;
+			std::string PATH_CSV = getenv("HOME");
 
 	};
 
