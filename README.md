@@ -54,7 +54,7 @@ A montagem dos pacotes deve ser feita como se segue:
 ```shel
 cd ~/workpace/src
 git clone https://github.com/danielb-28/RMA_Prateleira.git
-cd RMA_Prateleira ..
+cd RMA_Prateleira
 mv scan_prateleira ..
 mv planejamento ..
 mv leitor_qr ..
