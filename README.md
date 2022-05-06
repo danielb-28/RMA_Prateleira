@@ -61,7 +61,7 @@ mv leitor_qr ..
 mv RMA ..
 mv README.md ..
 cd ..
-rm RMA_Prateleira
+rm -rf RMA_Prateleira/
 ```
 
 ## Rodando a Simulação
