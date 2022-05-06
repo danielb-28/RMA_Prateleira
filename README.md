@@ -54,7 +54,8 @@ bash ~/workspace/src/RMA/src/start/start.sh
 Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 com os pacotes básicos do ROS já instalados no sistema, além do Gazebo, Catkin, Python etc. Bem como a workspace já compilada.
 
 Ainda assim são necessárias a instalação das dependências Python a seguir:
-```shelpip3 install numpy matplotlib qrcode
+```shel
+pip3 install numpy matplotlib qrcode
 ```
 
 A montagem dos pacotes deve ser feita como se segue:
