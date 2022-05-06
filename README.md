@@ -5,7 +5,7 @@ Grupo:
 
  - Daniel Amaral Brigante - 769867
  - Otavio de Paiva Pinheiro Neto - 769664
- - Wilson Daniel Bruno
+ - 
 
 ## Criação do ambiente
 O ambiente é criado pelo script https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/criadora_prateleira.py a medida que editas o arquivos .world, .launch e os models deste pacote, a estrutura pode ser modificada entre as linhas 382 - 399, desde o número de fileiras e blocos e a posição de início até o quantidade de prateleiras que podem ser ocupadas por produtos/caixas. A forma como as fileiras se dispõe (iniciando orientadas para dentro ou fora do bloco) no cenário pode ser modificada alterando a varável p1. A quantidade de caixas é feita com porcentagem do espaço disponível e atualmente roda com aleatoridade entre 30 e 100%, podendo ser modificada na linha 452.
