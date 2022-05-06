@@ -54,11 +54,11 @@ A montagem dos pacotes deve ser feita como se segue:
 ```shel
 cd ~/workpace/src
 git clone https://github.com/danielb-28/RMA_Prateleira.git
-mv RMA_Prateleira/scan_prateleira src
-mv RMA_Prateleira/planejamento src
-mv RMA_Prateleira/leitor_qr src
-mv RMA_Prateleira/RMA src
-mv RMA_Prateleira/README.md src
+mv RMA_Prateleira/scan_prateleira
+mv RMA_Prateleira/planejamento
+mv RMA_Prateleira/leitor_qr
+mv RMA_Prateleira/RMA
+mv RMA_Prateleira/README.md
 rm RMA_Prateleira
 ```
 
