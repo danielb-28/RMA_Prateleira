@@ -66,7 +66,7 @@ rm -rf RMA_Prateleira/
 
 É necessária a instalação da biblioteca de leitura do QrCode:
 ```bash
-sudo bash ~/workpace/src/leitor_qr/libquirc/install.sh
+sudo bash ~/workspace/src/leitor_qr/libquirc/install.sh
 ```
 
 Para finalizar basta compilar a workspace:
