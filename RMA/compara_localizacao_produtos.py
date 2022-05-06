@@ -2,13 +2,13 @@ import os
 import numpy as np
 
 # Tolerâncias quanto a diferenças de localização que ainda se consideram corretas
-toleranciaX = 0.3
-toleranciaY = 0.3
-toleranciaZ = 0.3
+toleranciaX = 0.7
+toleranciaY = 2
+toleranciaZ = 0.7
 
-listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_gerados.csv'), delimiter = ',')
+listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_selecionados.csv'), delimiter = ',')
 listaEncontrada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_encontrados.csv'), delimiter = ',')
-#listaEncontrada = listaEncontrada[listaEncontrada[:, 0].argsort()]  # Ordena vetor pelo índice
+listaGerada = np.delete(listaGerada, 4, 1)
 
 equivalencias = []      # Lista onde serão atribuídos os índices dos produtos que se encontram na mesma localização para ambas as listas
 incongruencias = []     # Lista onde serão atribuídos os índices dos produtos que se encontram em localizações diferentes nas listas
@@ -41,9 +41,14 @@ for i in range(len(listaEncontrada)):
         encontradosInesperados.append(int(listaEncontrada[i][0]))
 
 print()
-print(existentes, 'são os produtos encontrados, sendo que', equivalencias, 'estão no local esperado')
-print(inexistentes, 'são os produtos não encontrados')
-print(encontradosInesperados, 'são produtos que foram encontrados, mas não estavam na lista prévia')
+#print(existentes, 'são os produtos encontrados, sendo que', equivalencias, 'estão no local esperado')
+print(len(existentes), 'são os produtos encontrados, sendo que', len(equivalencias), 'estão no local esperado')
+print()
+#print(inexistentes, 'são os produtos não encontrados')
+print(len(inexistentes), 'são os produtos não encontrados')
+print()
+#print(encontradosInesperados, 'são produtos que foram encontrados, mas não estavam na lista prévia')
+print(len(encontradosInesperados), 'são produtos que foram encontrados, mas não estavam na lista prévia')
 print()
 
 for incongruente in incongruencias:

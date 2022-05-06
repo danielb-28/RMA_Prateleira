@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import sys
 
 def remove_repetidos(lista):
     l = []
@@ -8,6 +9,10 @@ def remove_repetidos(lista):
             l.append(i)
     l.sort()
     return l
+
+if len(sys.argv) != 2:
+    print("numero invalido de argumentos para selecionar os produtos")
+    exit()
 
 listaGerados = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pontos.csv'), delimiter = ',')
 
@@ -20,7 +25,7 @@ for i in range(len(listaGerados)):
     if menor > listaGerados[i][0]:
         menor = listaGerados[i][0]
     
-quantidadeSelecionados = 5
+quantidadeSelecionados = int(sys.argv[1])
 
 manter = np.random.randint(menor,maior, quantidadeSelecionados)
 manter = remove_repetidos(manter)
