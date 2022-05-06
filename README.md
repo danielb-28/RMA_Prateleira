@@ -69,9 +69,16 @@ rm -rf RMA_Prateleira/
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação criando novo ambiente.
 ```shel
 bash ~/workspace/src/RMA/scripts/gerar_ambiente.sh
+bash ./run.sh
 ```
 
 Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior:
 ```shel
 bash ~/workspace/src/RMA/src/start/start.sh
+bash ./run.sh
+```
+
+Para iniciar o leitor de QrCodes:
+```shel
+bash ./run.sh
 ```
