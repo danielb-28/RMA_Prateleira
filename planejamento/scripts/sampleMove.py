@@ -60,7 +60,7 @@ class globalPlanner:
         self.rotas["yaw"] = list(arquivo_trajetoria[:, 3])
         print(self.rotas)
         #self.rotas["x"], self.rotas["y"] = suavizar_curva(list(self.rotas["x"]), list(self.rotas["y"]))
-        self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"] = diminuir_pontos(self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"], arquivo_obstaculos[:,0], arquivo_obstaculos[:,1])
+        #self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"] = diminuir_pontos(self.rotas["x"], self.rotas["y"], self.rotas["z"], self.rotas["yaw"], arquivo_obstaculos[:,0], arquivo_obstaculos[:,1])
         print(self.rotas)
 
         # Times
