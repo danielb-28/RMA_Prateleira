@@ -81,15 +81,11 @@ Para utilização da simulação proposta, inicialmente é necessária a execuç
 ```bash
 cd ~/workspace/src/RMA
 bash criar_ambiente.sh
-cd /home/otavio/workspace/src/planejamento/scripts
-bash ./run.sh
 ```
 
 Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior, execute em outro terminal:
 ```bash
 bash ~/workspace/src/RMA/src/start/start.sh
-cd /home/otavio/workspace/src/planejamento/scripts
-bash ./run.sh
 ```
 
 Para iniciar o leitor de QrCodes:
