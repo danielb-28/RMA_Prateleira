@@ -42,14 +42,6 @@ https://github.com/danielb-28/RMA
 
 ###### Obs.: Existe uma proporção com a qual o mapa utilizado pelo A* para o cálculo da rota que modifica a escala de trabalho. Para modificá-la é necessário modificar o valor da variável porporcao no CriadoraPrateleira.py (linha 359) e no a_star.py (linha 43), ambos devem conter o mesmo valor e quando maior esse valor a resolução do mapa, mais aumenta o processamento do path planing.
 
-
-## Rodando a Simulação
-Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação.
-
-```shel
-bash ~/workspace/src/RMA/src/start/start.sh
-```
-
 ## Guia de instalação
 Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 com os pacotes básicos do ROS já instalados no sistema, além do Gazebo, Catkin, Python etc. Bem como a workspace já compilada.
 
@@ -67,6 +59,16 @@ mv RMA_Prateleira/planejamento src
 mv RMA_Prateleira/leitor_qr src
 mv RMA_Prateleira/RMA src
 mv RMA_Prateleira/README.md src
-rm RMA_Prateleira/
+rm RMA_Prateleira
 ```
 
+## Rodando a Simulação
+Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação criando novo ambiente.
+```shel
+bash ~/workspace/src/RMA/scripts/gerar_ambiente.sh
+```
+
+Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior:
+```shel
+bash ~/workspace/src/RMA/src/start/start.sh
+```
