@@ -26,7 +26,6 @@ manter = np.random.randint(menor,maior, quantidadeSelecionados)
 manter = remove_repetidos(manter)
 
 while len(manter) != quantidadeSelecionados:
-    print('babaca')
     iguais = True
     manter = np.random.randint(menor,maior, quantidadeSelecionados)
     manter = remove_repetidos(manter)
