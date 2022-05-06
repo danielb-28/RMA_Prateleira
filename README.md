@@ -29,7 +29,7 @@ Existem os scripts https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/re
  - localizacao_produtos_indices_trocados.csv
 
 ## Remoção de arquivos
-Para remover os arquivos csv, o mapa e os models dos QR Codes adicionais, basta executar https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/removedora_arquivos.py e esses arquivos serão apagados.
+Para remover os arquivos csv, o mapa e os models de QR Codes adicionais, basta executar https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/removedora_arquivos.py e esses arquivos serão apagados.
 
 ## TSP - Caixeiro Viajante
 Daniel é bobão
@@ -44,4 +44,4 @@ https://github.com/danielb-28/RMA
 
 
 ## Passo-a-passo
-Para utilização da simulação proposta, inicialmente é necessária a execução do CriadoraPrateleira.py
+Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação.
