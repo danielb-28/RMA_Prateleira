@@ -385,11 +385,9 @@ comprimento_fileira = 5       # Comprimento em x*3.32 de cada fileira (X)
 quantidade_prateleiras = 3    # Quantidade de prateleiras (empilhadas) em cada fileira, até 8
 andar2 = True if quantidade_prateleiras > 4 else False  # prateleira em cima de prateleira
 #alturas = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]     # Altura das caixas, da mais baixa até a mais alta, observe que deve haver alturas de acordo com a quantidade de prateleiras configuradas [0.3, 1.6, 2.8]
-#alturas = Alturas(quantidade_prateleiras)          # Função que cria as alturas automaticamente de acordo com a quantidade de prateleiras, a altura inicial e a altura de cada prateleira
+#alturas = Alturas(quantidade_prateleiras)         # Função que cria as alturas automaticamente de acordo com a quantidade de prateleiras, a altura inicial e a altura de cada prateleira
 
-# se voces quiserem automatizar esse array tem como tirar uma equacao desses valores
-# ai vcs descobrem o n, ai os novos valores multiplica por esse n
-# da pra fazer isso com a equacao da reta msm
+
 alturas = [0.1, 0.99, 1.86, 2.735, 3.69, 4.58, 5.45, 6.33]  
 #caixas_fileira = 1           # Porcentagem de caixas ocupando a totalidade do depósito. Substituído por parâmetro aleatorizador
 
@@ -397,12 +395,12 @@ p1 = False                    # Primeira fileira virada para fora (True)
 count = 1
 tam_corredorHorizontal = 6    # Tamanho do corredor entre as fileiras de mesma orientação (Nesse corredor ainda existe uma fileira virada para o outro lado)
 tam_corredorVertical = 4      # Tamanho do corredor entre os blocos de fileiras
-Yinicial = 5+0.425                  # Localização Y do centro da primeira prateleira
-Xinicial = 5+1.6                  # Localização X do centro da primeira prateleira
+Yinicial = 5 + 0.425          # Localização Y do centro da primeira prateleira (o ajuste de 0.425 se dá por conta do centro da prateleira)
+Xinicial = 5 + 1.6            # Localização X do centro da primeira prateleira (o ajuste de 1.6 se dá por conta do centro da prateleira)
 
 localizacaoProduto = []
 localizacaoDrone = []
-caixas_prateleira = 2
+caixas_prateleira = 2         # Cada estante em uma fileira admite de uma a duas caixas em suas prateleiras
 nCaixas = quantidade_blocos*quantidade_fileiras*comprimento_fileira*quantidade_prateleiras*caixas_prateleira
 
 nomeLaunch = os.path.join(os.path.dirname(os.path.abspath(__file__)), "src/launch/simulation_arena")
