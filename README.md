@@ -71,7 +71,7 @@ sudo bash ~/workspace/src/leitor_qr/libquirc/install.sh
 
 Para finalizar basta compilar a workspace:
 ```bash
-cd ~/workpace
+cd ~/workspace
 catkin clean && catkin_make
 ```
 
