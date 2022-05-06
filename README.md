@@ -46,20 +46,19 @@ https://github.com/danielb-28/RMA
 ## Rodando a Simulação
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação.
 
-'''shel
+```shel
 bash ~/workspace/src/RMA/src/start/start.sh
-'''
+```
 
 ## Guia de instalação
 Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 com os pacotes básicos do ROS já instalados no sistema, além do Gazebo, Catkin, Python etc. Bem como a workspace já compilada.
 
 Ainda assim são necessárias a instalação das dependências Python a seguir:
-'''shel
-pip3 install numpy matplotlib qrcode
-'''
+```shelpip3 install numpy matplotlib qrcode
+```
 
 A montagem dos pacotes deve ser feita como se segue:
-'''shel
+```shel
 cd ~/workpace/src
 git clone https://github.com/danielb-28/RMA_Prateleira.git
 mv RMA_Prateleira/scan_prateleira src
@@ -68,5 +67,5 @@ mv RMA_Prateleira/leitor_qr src
 mv RMA_Prateleira/RMA src
 mv RMA_Prateleira/README.md src
 rm RMA_Prateleira/
-'''
+```
 
