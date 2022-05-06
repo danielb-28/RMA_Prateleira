@@ -47,12 +47,12 @@ Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 co
 Instruções de como instalar todos esses ambientes encontram-se em: https://github.com/vivaldini/RMA .
 
 Ainda assim são necessárias a instalação das dependências Python a seguir:
-```shel
+```bash
 pip3 install numpy matplotlib qrcode
 ```
 
 A montagem dos pacotes deve ser feita como se segue:
-```shel
+```bash
 cd ~/workpace/src
 git clone https://github.com/danielb-28/RMA_Prateleira.git
 cd RMA_Prateleira
@@ -66,30 +66,30 @@ rm -rf RMA_Prateleira/
 ```
 
 É necessária a instalação da biblioteca de leitura do QrCode:
-```shel
-sudo bash ~/workpace/src/home/otavio/workspace/src/leitor_qr/libquirc/install.sh
+```bash
+bash ~/workpace/src/home/otavio/workspace/src/leitor_qr/libquirc/install.sh
 ```
 
 Para finalizar basta compilar a workspace:
-```shel
+```bash
 cd ~/workpace
 catkin clean && catkin_make
 ```
 
 ## Rodando a Simulação
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação criando novo ambiente.
-```shel
+```bash
 bash ~/workspace/src/RMA/scripts/gerar_ambiente.sh
 bash ./run.sh
 ```
 
 Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior, execute em outro terminal:
-```shel
+```bash
 bash ~/workspace/src/RMA/src/start/start.sh
 bash ./run.sh
 ```
 
 Para iniciar o leitor de QrCodes:
-```shel
+```bash
 bash ./run.sh
 ```
