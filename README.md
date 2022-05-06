@@ -66,7 +66,8 @@ rm -rf RMA_Prateleira/
 
 É necessária a instalação da biblioteca de leitura do QrCode:
 ```bash
-sudo bash ~/workspace/src/leitor_qr/libquirc/install.sh
+cd ~/workspace/src/leitor_qr/libquirc
+sudo bash install.sh
 ```
 
 Para finalizar basta compilar a workspace:
@@ -85,10 +86,12 @@ bash ./run.sh
 Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior, execute em outro terminal:
 ```bash
 bash ~/workspace/src/RMA/src/start/start.sh
+cd /home/otavio/workspace/src/planejamento/scripts
 bash ./run.sh
 ```
 
 Para iniciar o leitor de QrCodes:
 ```bash
+cd /home/otavio/workspace/src/planejamento/scripts
 bash ./run.sh
 ```
