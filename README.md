@@ -44,6 +44,7 @@ https://github.com/danielb-28/RMA
 
 ## Guia de instalação
 Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 com os pacotes básicos do ROS já instalados no sistema, além do Gazebo, Catkin, Python etc. Bem como a workspace já compilada.
+Instruções de como instalar todos esses ambientes encontram-se em: https://github.com/vivaldini/RMA .
 
 Ainda assim são necessárias a instalação das dependências Python a seguir:
 ```shel
