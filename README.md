@@ -49,6 +49,7 @@ Instruções de como instalar todos esses ambientes encontram-se em: https://git
 Ainda assim são necessárias a instalação das dependências Python a seguir:
 ```bash
 pip3 install numpy matplotlib qrcode
+sudo apt install xterm
 ```
 
 A montagem dos pacotes deve ser feita como se segue:
@@ -85,7 +86,7 @@ bash criar_ambiente.sh
 
 Para realizar a simulação no ambiente no mesmo ambiente da simulação anterior, execute em outro terminal:
 ```bash
-bash ~/workspace/src/RMA/src/start/start.sh
+bash ~/workspace/src/RMA/src/start_new/start.sh
 ```
 
 Para iniciar o leitor de QrCodes:
