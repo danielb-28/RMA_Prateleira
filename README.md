@@ -43,5 +43,30 @@ https://github.com/danielb-28/RMA
 ###### Obs.: Existe uma proporção com a qual o mapa utilizado pelo A* para o cálculo da rota que modifica a escala de trabalho. Para modificá-la é necessário modificar o valor da variável porporcao no CriadoraPrateleira.py (linha 359) e no a_star.py (linha 43), ambos devem conter o mesmo valor e quando maior esse valor a resolução do mapa, mais aumenta o processamento do path planing.
 
 
-## Passo-a-passo
+## Rodando a Simulação
 Para utilização da simulação proposta, inicialmente é necessária a execução do script gerar_ambiente.sh . Ele irá executar e movimentar os arquivos necessários para a realização da simulação.
+
+'''shel
+bash ~/workspace/src/RMA/src/start/start.sh
+'''
+
+## Guia de instalação
+Este guia presume que o usuário possua uma distribuição linux Ubuntu 20.04 com os pacotes básicos do ROS já instalados no sistema, além do Gazebo, Catkin, Python etc. Bem como a workspace já compilada.
+
+Ainda assim são necessárias a instalação das dependências Python a seguir:
+'''shel
+pip3 install numpy matplotlib qrcode
+'''
+
+A montagem dos pacotes deve ser feita como se segue:
+'''shel
+cd ~/workpace/src
+git clone https://github.com/danielb-28/RMA_Prateleira.git
+mv RMA_Prateleira/scan_prateleira src
+mv RMA_Prateleira/planejamento src
+mv RMA_Prateleira/leitor_qr src
+mv RMA_Prateleira/RMA src
+mv RMA_Prateleira/README.md src
+rm RMA_Prateleira/
+'''
+
