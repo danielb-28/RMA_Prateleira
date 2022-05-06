@@ -390,7 +390,7 @@ andar2 = True if quantidade_prateleiras > 4 else False  # prateleira em cima de 
 # se voces quiserem automatizar esse array tem como tirar uma equacao desses valores
 # ai vcs descobrem o n, ai os novos valores multiplica por esse n
 # da pra fazer isso com a equacao da reta msm
-alturas = [0.99, 1.86, 2.735, 3.69, 4.58, 5.45, 6.33]  
+alturas = [0.1, 0.99, 1.86, 2.735, 3.69, 4.58, 5.45, 6.33]  
 #caixas_fileira = 1           # Porcentagem de caixas ocupando a totalidade do depósito. Substituído por parâmetro aleatorizador
 
 p1 = False                    # Primeira fileira virada para fora (True)

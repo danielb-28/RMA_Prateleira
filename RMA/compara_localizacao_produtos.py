@@ -2,12 +2,12 @@ import os
 import numpy as np
 
 # Tolerâncias quanto a diferenças de localização que ainda se consideram corretas
-toleranciaX = 0.7
-toleranciaY = 0.7
-toleranciaZ = 0.7
+toleranciaX = 0.3
+toleranciaY = 0.3
+toleranciaZ = 0.3
 
 listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_gerados.csv'), delimiter = ',')
-listaEncontrada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'qr_encontrados.csv'), delimiter = ',')
+listaEncontrada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_encontrados.csv'), delimiter = ',')
 #listaEncontrada = listaEncontrada[listaEncontrada[:, 0].argsort()]  # Ordena vetor pelo índice
 
 equivalencias = []      # Lista onde serão atribuídos os índices dos produtos que se encontram na mesma localização para ambas as listas
