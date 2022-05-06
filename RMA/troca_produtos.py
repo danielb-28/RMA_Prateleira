@@ -19,7 +19,7 @@ imagem2 = qr.make(str(trocado1))
 imagem2.save(os.path.join(endereco2, enderecoQR))
 
 
-listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_gerados.csv'), delimiter = ',')
+listaGerada = np.loadtxt(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pontos.csv'), delimiter = ',')
 
 for i in range(len(listaGerada)):
     if listaGerada[i][0] == trocado1:
@@ -29,6 +29,6 @@ for i in range(len(listaGerada)):
 listaGerada[aux1][0] = trocado2
 listaGerada[aux2][0] = trocado1
 
-with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'localizacao_produtos_indices_trocados.csv'), 'w') as arquivoEscrita:
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pontos.csv'), 'w') as arquivoEscrita:
     for i in range(len(listaGerada)):
-        arquivoEscrita.write(str(listaGerada[i][0]) + ',' + str(listaGerada[i][1]) + ',' + str(listaGerada[i][2]) + ',' + str(listaGerada[i][3]) + '\n')
+        arquivoEscrita.write(str(listaGerada[i][0]) + ',' + str(listaGerada[i][1]) + ',' + str(listaGerada[i][2]) + ',' + str(listaGerada[i][3]) + ',' + str(listaGerada[i][4]) + '\n')
