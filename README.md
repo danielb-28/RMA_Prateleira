@@ -32,7 +32,6 @@ Existem os scripts https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/re
 Para remover os arquivos csv, o mapa e os models de QR Codes adicionais, basta executar https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/removedora_arquivos.py e esses arquivos serão apagados.
 
 ## TSP - Caixeiro Viajante
-Daniel é bobão
 
 ## Planejamento de Trajetória com A*
 Foram feitas alterações para que o script no link abaixo fosse compatível com a estrutura do projeto, tornando-se o https://github.com/danielb-28/RMA_Prateleira/blob/main/RMA/a_star.py .
